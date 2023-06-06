@@ -1,0 +1,111 @@
+.popup {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  // background-color: rgba($color: #000000, $alpha: 0.2);
+ 
+  z-index: 3000;
+  // transition: all 02s ease-in-out;  TURNED OFF CUZ THIS WAS TURNING VISIBILITY:VISIBLE AFTER 2 SEC WHICH BLUR ANIMATION SUDDEN
+
+  //   display: none;
+  visibility: hidden;
+  opacity: 0;
+
+  &__left {
+    width: 33.33333%;
+
+    display: table-cell;
+  }
+  &__right {
+    width: 66.666666%;
+
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+  &__img {
+    display: block;
+    width: 100%;
+  }
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-light;
+
+    hyphens: auto;
+  }
+
+  &__content {
+    @include absolutecenter;
+    border-radius: 3px;
+    width: 75%;
+    // height: 50rem;
+    background-color: $color-white;
+    box-shadow: 1rem 1.5rem 3rem rgba($color: #000000, $alpha: 0.5);
+    display: table;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all 0.5s ease-in-out;
+  }
+
+  //popup open states
+
+  &:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &:target &__content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+      line-height: 1;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  //FOR BACKGROUND BLUR DURING POPUP ACTIVE WITH LINK OUTSIDE THE POPUP_CONTENT 
+  &:target &__anchor {
+    animation-name: blur-background;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+  }
+
+  &__anchor {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    opacity:0;
+
+    cursor: default;
+  }
+}
+
+//experiment

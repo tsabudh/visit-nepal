@@ -1,0 +1,1 @@
+This is HTML and SCSS only fully responsive webpage I created while learning CSS.

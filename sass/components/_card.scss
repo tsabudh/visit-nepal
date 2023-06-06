@@ -1,0 +1,262 @@
+.card {
+  //TO MAKE IT SPIN
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  -ms-perspective: 150rem;
+  position: relative;
+  height: 50rem;
+
+  &__side {
+    height: 50rem;
+    font-size: 2rem;
+    transition: all 0.9s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    overflow: hidden;
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(
+          to right bottom,
+          #{$color-secondary-light},
+          #{$color-secondary-dark}
+        );
+      }
+      &-2 {
+        background-image: linear-gradient(
+          to right bottom,
+          #{$color-primary-light},
+          #{$color-primary-dark}
+        );
+      }
+      &-3 {
+        background-image: linear-gradient(
+          to right bottom,
+          #{$color-tertiary-light},
+          #{$color-tertiary-dark}
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0deg);
+  }
+
+  // FRONT SIDE STYLING PICTURE HEADING DETAILS
+  &__picture {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    height: 23rem;
+    background-size: cover;
+    background-blend-mode: screen;
+
+    // backface-visibility: hidden;
+
+    &--1 {
+      background-image: linear-gradient(
+          to right bottom,
+          #{$color-secondary-light},
+          #{$color-secondary-dark}
+        ),
+        url('../img/nat-5.jpg');
+    }
+
+    &--2 {
+      background-image: linear-gradient(
+          to right bottom,
+          #{$color-primary-light},
+          #{$color-primary-dark}
+        ),
+        url('../img/nat-6.jpg');
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+          to right bottom,
+          #{$color-tertiary-light},
+          #{$color-tertiary-dark}
+        ),
+        url('../img/nat-7.jpg');
+    }
+  }
+
+  &__heading {
+    width: 75%;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    text-align: right;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    color: $color-white;
+    font-weight: 300;
+  }
+
+  &__heading-span {
+    width: fit-content;
+    padding: 1rem 0.5rem 1rem 2.5rem;
+    // padding: 1rem 2.5rem;
+
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+
+    //experiment with card heading
+
+    &--1 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.5),
+        rgba($color-secondary-dark, 1)
+      );
+    }
+    &--2 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.5),
+        rgba($color-primary-dark, 1)
+      );
+    }
+    &--3 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-tertiary-light, 0.5),
+        rgba($color-tertiary-dark, 1)
+      );
+    }
+  }
+
+  &__details {
+    padding: 2.5rem;
+    ul {
+      margin: 0 auto;
+      list-style: none;
+      width: 80%;
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-grey-light-2;
+        }
+      }
+    }
+  }
+
+  &__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: $color-grey-light-1;
+
+    &--btn {
+      margin-top: 2rem;
+      font-size: $font-size-default;
+      padding: 1rem 2rem;
+    }
+  }
+  &__price--box {
+    padding: 8rem 0;
+  }
+  &__price--only {
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  &__price--value {
+    font-weight: 100;
+    font-size: 6rem;
+    text-align: center;
+  }
+
+  //-------------------------------------------------------------------------------------------------------------
+  @include respond(tab-port) {
+    padding: 0;
+    max-width: 90%;
+    margin: 0 auto;
+    background-color: $color-white;
+
+    //TO MAKE IT NOT SPIN
+
+    height: auto; //to insert back side to front
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+    &__side {
+      height: auto;
+      position: relative; // since we no longer have two sides sticking on same position
+      overflow: hidden;
+      box-shadow: none;
+      transition: none;
+
+      &--front {
+        background-color: $color-white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &--back {
+        margin-top: -2rem;
+        padding: 3rem;
+        transform: rotateY(0deg);
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+    &:hover &__side--front {
+      transform: rotateY(0deg);
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0deg);
+    }
+  
+  &__cta {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0 2.5rem 0;
+
+    transform: translate(0);
+
+    &--btn {
+      margin-top: 2rem;
+      font-size: $font-size-default;
+      padding: 1rem 2rem;
+    }
+  }
+  &__price--box {
+    padding:0;
+  }
+  &__price--only {
+    font-weight: 300;
+  }
+  &__price--value {
+    font-weight: 100;
+    font-size: 4rem;
+  }
+}
+}
+//IMAGE URL MUST BE RELATIVE TO THE CSS FILE THIS CODE IS TO BE COMPILED INTO
+//card:hover card__side{ transform: rotate();} we want to card side to transform when we hover the card.
+// we might have more sides so we want effect to occur on main component ie;card

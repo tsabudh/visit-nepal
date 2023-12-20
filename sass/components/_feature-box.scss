@@ -9,14 +9,14 @@
 
   min-height: 34rem; // CHANGING THIS HEIGHT CHANGES THE BACKGROUND IMAGE PROPERTY, ZOOMES UNWANTEDLY
   //DEFINING PROPERTY BACKGROUND-SIZE:100% fixed that
+  height: 100%;
 
-@include respond(tab-port)
-{
-  padding:2rem;
-  max-width: 70%;
-  margin: 0 auto;
-  min-height: 24rem;
-}
+  @include respond(tab-port) {
+    padding: 2rem;
+    max-width: 70%;
+    margin: 0 auto;
+    min-height: 24rem;
+  }
   &__icon {
     font-size: 6rem;
     margin-bottom: 0.5rem;
